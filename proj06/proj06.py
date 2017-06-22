@@ -59,9 +59,9 @@ def hangman():
         word = raw_input("Enter a word: ")
         x = raw_input("Enter * to show you're ready")
 
-        # theList = []
-        # for letter in word:
-        #     theList.append(letter)
+        theList = []
+        for letter in word:
+            theList.append(letter)
         #     x = 0
         #
         #     for LETTER in theList:
@@ -76,7 +76,7 @@ def hangman():
             theList.append(letter)
     print "You will recieve 6 wrong guesses before I name you a failure."
     length = len(word)
-    print word
+    #print word
     print "The word you are trying to guess happens to be", length, "letters long."
 
     blanklist = []
