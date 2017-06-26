@@ -1,4 +1,4 @@
-# Name: bonnie and natalie updategadfudifadsfaiudgf :)
+# Name: bonnie and natalie updategadfudifadsfaiudgf :)))))))))))
 # Date:
 
 # proj07: Word Game
@@ -358,27 +358,27 @@ def play_hand(hand, word_list):
              break
 
         if valid == False:
-            print "invalid word."
+            print "That is an Invalid Word."
 
             # word = raw_input("enter word or put '.' to finish.")
             # if word == '.':
             #     break
         if valid == True:
-            print "valid word. :)"
+            print "Valid Word. :)"
             score = get_word_score(word, HAND_SIZE)
             #print score, " ...is the score for this word."
             finalscore = finalscore + score
-            print finalscore, " ...and this is the scores added up so far"
+            print finalscore, " is the scores added up so far."
 
 
             hand = update_hand(hand, word)
-            print "this below is your hand"
+            print "This below is your hand."
             display_hand(hand)
 
             if len(hand) == 0:
-                print "all letters were used on the first try. awesome!"
+                print "All letters were used on the first try. Awesome!"
 
-        print finalscore, 'awlkdfhjadshfiuasfoefes'
+
 
 
 
@@ -412,18 +412,18 @@ def play_hand(hand, word_list):
 def play_game(word_list):
     hand = deal_hand(HAND_SIZE)
     play_hand(hand, word_list)
-    answer = raw_input("enter n to get new hand, e to exit, r to play the last hand again")
-    while answer != 'n' or 'e' or 'r':
-        if answer == 'n':
+    answer = raw_input("Enter 'n' to get new hand, 'e' to exit, 'r' to play the last hand again")
+    while answer != 'n' or 'e' or 'r' or 'N' or 'E' or 'R':
+        if answer == 'n' or 'N':
             play_hand(deal_hand(HAND_SIZE), word_list)
-        if answer == 'e':
-            print "this is the end of this crappy game yay"
+        if answer == 'e'or 'E':
+            print "This is the end of this crappy game. yay."
             exit()
-        if answer == 'r':
+        if answer == 'r' or 'R':
             play_hand(hand, word_list)
 
         else:
-            print "you cant do that put n or e or r what part of putting one of three letters do you not understand you doof"
+            print "You can't do that! Put 'n' or 'e' or 'r'. What part of putting one of three letters do you not understand you mediocre dunce"
 
 
 
