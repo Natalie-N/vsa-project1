@@ -1,4 +1,4 @@
-# Name: bonnie and natalie
+# Name: bonnie and natalie updategadfudifadsfaiudgf :)
 # Date:
 
 # proj07: Word Game
@@ -76,7 +76,8 @@ def get_word_score(word, n):
     if len(word) == n:
         score = score + 50
 
-    print "score after multiplying is", score
+
+    print "Nice one... This word's score is", score
     return score
 
 
@@ -185,11 +186,11 @@ def deal_hand(n):
 def update_hand(hand, word):
     new_hand = hand.copy()
 
-    leftoverletters = {}
+
     letterlist2 = []
     for letters in word:
         letterlist2.append(letters)
-    print hand
+    #print hand
 
     for letters in word:
         # if letters in hand:
@@ -198,12 +199,13 @@ def update_hand(hand, word):
 
 
             new_hand[letters] = new_hand[letters] - 1
-            print new_hand[letters]
+            #print new_hand[letters]
 
-    print new_hand[letters]
-    print new_hand, 'this is what you have left'
+    #print new_hand, ' is what you have left'
+
 
     return new_hand
+
 #update_hand(deal_hand(10), 'hello')
 
 #update_hand(deal_hand(10), 'hello')
@@ -259,33 +261,52 @@ def update_hand(hand, word):
 # Problem #3: Test word validity
 #
 def is_valid_word(word, hand, word_list):
-    letterlist3 = []
+
+
+    x = 0 #x is the index place
     for letters in word:
-        letterlist3.append(letters)
-    number = 0
-    number2 = 0
-
-    if word not in word_list:
-        print "invalid word. not in word list."
-    if word in word_list:
-        print "valid word. in word list. good job"
-
-    for letters in word:
-        if letters in letterlist3:
-            number2 = number2 + 1
-
-        if letters in hand:
-            number = number + 1  # letter has not been used before
-            print "good one!"
-
-
-        elif letters not in hand:
-            print "terrible! you used a letter you dont have. >:("
+        if hand.get(letters, 0) <= 0:
+            #print 'letters not in hand'
             return False
-    if number < number2:
+
+
+        if hand.get(letters, 0) > 0:
+
+            hand = update_hand(hand, letters)
+
+            #print 'letters are in hand. great job'
+
+
+
+    if word in word_list:
+        #print "word is in wordlist"
+        return True
+    if word not in word_list:
+        #print 'word isnt in wordlist'
         return False
 
-    return True
+
+
+
+
+
+
+    # for letters in word:
+    #     if letters in hand:
+    #         number2 = number2 + 1
+    #
+    #     if letters in hand:
+    #         number = number + 1  # letter has not been used before
+    #         print "good one!"
+
+
+    #     elif letters not in hand:
+    #         print "terrible! you used a letter you don't have. >:("
+    #         return False
+    # if number < number2:
+    #     return False
+
+#is_valid_word('hello', deal_hand(10), load_words())
 
 
 # is_valid_word("hello",deal_hand(HAND_SIZE), load_words())
@@ -309,32 +330,78 @@ def calculate_handlen(hand):
 # Problem #4: Playing a hand
 #
 def play_hand(hand, word_list):
-    """
-    Allows the user to play the given hand, as follows:
 
-    * The hand is displayed.
 
-    * The user may input a word.
+    # """
+    # Allows the user to play the given hand, as follows:
+    #
+    # * The hand is displayed.
 
-    * An invalid word is rejected, and a message is displayed asking
-      the user to choose another word.
+    display_hand(hand)
 
-    * When a valid word is entered, it uses up letters from the hand.
+    #
+    # * The user may input a word.
 
-    * After every valid word: the score for that word is displayed,
-      the remaining letters in the hand are displayed, and the user
-      is asked to input another word.
+    #
+    # * An invalid word is rejected, and a message is displayed asking
+    #   the user to choose another word.
 
-    * The sum of the word scores is displayed when the hand finishes.
 
-    * The hand finishes when there are no more unused letters.
-      The user can also finish playing the hand by inputing a single
-      period (the string '.') instead of a word.
+    finalscore = 0
+#while valid == False
+    while len(hand) > 0 or word == '.':
 
-      hand: dictionary (string -> int)
-      word_list: list of lowercase strings
+        word = raw_input("enter a word or put '.' to finish.")
 
-    """
+        valid = is_valid_word(word, hand, word_list)
+        if word == '.':
+             break
+
+        if valid == False:
+            print "invalid word."
+
+            # word = raw_input("enter word or put '.' to finish.")
+            # if word == '.':
+            #     break
+        if valid == True:
+            print "valid word. :)"
+            score = get_word_score(word, HAND_SIZE)
+            #print score, " ...is the score for this word."
+            finalscore = finalscore + score
+            print finalscore, " ...and this is the scores added up so far"
+
+
+            hand = update_hand(hand, word)
+            print "this below is your hand"
+            display_hand(hand)
+
+            if len(hand) == 0:
+                print "all letters were used on the first try. awesome!"
+
+        print finalscore, 'awlkdfhjadshfiuasfoefes'
+
+
+
+
+    #
+    # * When a valid word is entered, it uses up letters from the hand.
+    #
+    # * After every valid word: the score for that word is displayed,
+
+
+    #   the remaining letters in the hand are displayed, and the user
+    #   is asked to input another word.
+    #
+    # * The sum of the word scores is displayed when the hand finishes.
+    #
+    # * The hand finishes when there are no more unused letters.
+    #   The user can also finish playing the hand by inputting a single
+    #   period (the string '.') instead of a word.
+    #
+    #   hand: dictionary (string -> int)
+    #   word_list: list of lowercase strings
+    #
+    # """
     # TO DO ...
 
 
@@ -343,20 +410,38 @@ def play_hand(hand, word_list):
 # Make sure you understand how this code works!
 #
 def play_game(word_list):
-    """
-    Allow the user to play an arbitrary number of hands.
+    hand = deal_hand(HAND_SIZE)
+    play_hand(hand, word_list)
+    answer = raw_input("enter n to get new hand, e to exit, r to play the last hand again")
+    while answer != 'n' or 'e' or 'r':
+        if answer == 'n':
+            play_hand(deal_hand(HAND_SIZE), word_list)
+        if answer == 'e':
+            print "this is the end of this crappy game yay"
+            exit()
+        if answer == 'r':
+            play_hand(hand, word_list)
 
-    * Asks the user to input 'n' or 'r' or 'e'.
+        else:
+            print "you cant do that put n or e or r what part of putting one of three letters do you not understand you doof"
 
-    * If the user inputs 'n', let the user play a new (random) hand.
-      When done playing the hand, ask the 'n' or 'e' question again.
 
-    * If the user inputs 'r', let the user play the last hand again.
 
-    * If the user inputs 'e', exit the game.
 
-    * If the user inputs anything else, ask them again.
-    """
+    # """
+    # Allow the user to play an arbitrary number of hands.
+    #
+    # * Asks the user to input 'n' or 'r' or 'e'.
+    #
+    # * If the user inputs 'n', let the user play a new (random) hand.
+    #   When done playing the hand, ask the 'n' or 'e' question again.
+    #
+    # * If the user inputs 'r', let the user play the last hand again.
+    #
+    # * If the user inputs 'e', exit the game.
+    #
+    # * If the user inputs anything else, ask them again.
+    # """
     # TO DO...
 
 
